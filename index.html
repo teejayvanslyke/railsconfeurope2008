@@ -140,6 +140,22 @@ TypeError: null has no properties.
 
       </div>
 
+      <div class="slide">
+        <h1>jSpec: Technical hurdles</h1>
+
+        <p>Solution:  Use a custom selector for all expectations.</p>
+
+        <pre>
+jSpec.$ = function(expr)
+{
+  if (expr == null)
+  {
+    return new jSpec.NullObject();
+  }
+  return expr;
+}
+        </pre>
+      </div>
 
       <div class="slide">
         <h1>jSpec</h1>
@@ -148,15 +164,14 @@ jSpec.describe('this presentation', function($)
 {
   var presentation;
   $.beforeEach(function() {
-    presentation = { city: 'Berlin', boring: false };
+    presentation = { audience: null, boring: false };
   });
-  $.it('should be in Berlin', function() {
-    $.$(presentation).city.should().equal('Berlin');
+  $.it("should have an audience", function() {
+    $.$(presentation.audience).shouldNot().beNull();
   });
   $.it("should not be boring", function() {
     $.$(presentation).shouldNot().be('boring');
   });
-  $.
 });
         </pre>
       </div>
