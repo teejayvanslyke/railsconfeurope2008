@@ -1,0 +1,69 @@
+/*
+1 -----
+#1919B3
+#12127D
+#C8C8FF
+#9191FF
+2 -----
+#400099
+#2D006B
+#DABFFF
+#B580FF
+3 -----
+#0066B3
+#00487D
+#BFE4FF
+#80C9FF
+*/
+
+body {
+  font-family: Georgia, Sans-serif;
+  font-size: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.8em;
+  background-color: #400099;
+  border-bottom: 0.5em solid #2D006B;
+}
+
+ul li {
+  font-size: 2.0em;
+}
+
+.center {
+  text-align: center;
+}
+  
+
+.slide {
+  width: 53.3em;
+  height: 30em;
+  color: #C8C8FF;
+  border: 0.2em solid #1919B3;
+  background-color: #12127D;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  background-color: #00487D;
+  border: 0.4em solid #0066B3;
+  color: #BFE4FF;
+  font-family: "Monaco", "Courier New", fixed;
+}
+pre.left {
+  width: 25em;
+  float: left;
+}
+pre.right {
+  width: 25em;
+  float: right;
+}
+}

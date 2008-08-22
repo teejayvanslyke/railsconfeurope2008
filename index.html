@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+  <head>
+    <title>A Survey of Behavior Driven Development in JavaScript</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="stylesheets/main.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" src="javascripts/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.slideshow.js"></script>
+    <script type="text/javascript">
+      $(function() {
+          $('.slideshow').slideshow();
+      });
+    </script>
+  </head>
+  <body>
+
+    <div class="slideshow">
+
+      <div class="slide">
+
+        <h1>A Survey of Behavior-Driven Development in JavaScript</h1>
+
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
+
+        <h2>T.J. VanSlyke</h2>
+        <h3>ELC Technologies</h3>
+        <h2>September 4, 2008</h2>
+
+      </div>
+
+      <div class="slide">
+
+        <h1>describe "Presentation" do<br/>
+          it "has an overview"
+        </h1>
+
+        <ul>
+          <li>Motivation</li>
+          <li>Background</li>
+          <li>Technical hurdles to a friendly solution.</li>
+          <li>Existing solutions</li>
+          <li>The future</li>
+        </ul>
+
+      </div>
+
+      <div class="slide">
+
+        <h1>Motivation</h1>
+
+        <ul>
+          <li>No integration of JavaScript testing into developer workflow</li>
+          <li>Selenium doesn't cut it for day-to-day unit testing</li>
+          <li>Client-side code is becoming more complex</li>
+        </ul>
+
+      </div>
+
+      <div class="slide">
+
+        <h1>Motivation</h1>
+
+        <ul>
+          <li>Yet another reason to wake up with keyboard imprints on your face.</li>
+        </ul>
+
+        <img src="images/passed_out_on_keyboard.gif"/>
+
+      </div>
+
+      <div class="slide">
+        <h1>jSpec</h1>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="center">
+          <img src="images/jspec.png"/>
+        </div>
+
+      </div> 
+
+      <div class="slide">
+
+        <h1>jSpec: Technical hurdles</h1>
+
+        <p>JavaScript can perform similarly to Ruby when it comes to syntax-sugar metaprogramming.</p>
+
+        <pre>
+# Ruby
+class Object
+  def should(matcher, &amp;block)
+    do_stuff_with(matcher, block)
+  end
+end
+        </pre>
+
+        <pre>
+// JavaScript
+Object.prototype.should = function(matcher, fn) {
+  doStuffWith(matcher, fn);
+}
+        </pre>
+
+      </div>
+
+      <div class="slide">
+
+        <h1>jSpec: Technical hurdles</h1>
+
+        <p>But unfortunately, the grass isn't greener on the client-side.</p>
+
+        <pre class="left">
+# Ruby
+class Object
+  def say_hello
+    puts "Hello!"
+  end
+end
+
+&gt;&gt; nil.a_method
+Hello!
+        </pre>
+
+        <pre class="right">
+// JavaScript
+Object.prototype.aMethod = function() {
+  // do stuff
+}
+
+
+
+&gt;&gt; null.aMethod();
+TypeError: null has no properties.
+        </pre>
+
+      </div>
+
+
+      <div class="slide">
+        <h1>jSpec</h1>
+        <pre>
+jSpec.describe('this presentation', function($)
+{
+  var presentation;
+  $.beforeEach(function() {
+    presentation = { city: 'Berlin', boring: false };
+  });
+  $.it('should be in Berlin', function() {
+    $.$(presentation).city.should().equal('Berlin');
+  });
+  $.it("should not be boring", function() {
+    $.$(presentation).shouldNot().be('boring');
+  });
+  $.
+});
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>jSpec</h1>
+
+        <div class="center">
+          <img src="images/ninja-kitten-defeats-dog-with-google-search-skills-always.jpg"/>
+        </div>
+      </div>
+
+
+
+      <div class="slide">
+
+        <h1>Background</h1>
+
+        <ul>
+          <li>JsUnit (http://www.jsunit.net/)</li>
+          <li>jqunit (http://code.google.com/p/jqunit/)</li>
+          <li>QUnit (http://docs.jquery.com/QUnit)</li>
+        </ul>
+
+      </div>
+
+      <div class="slide">
+        <h1>THE FUTURE</h1>
+        <div class="center">
+          <img src="images/flyingcar.jpg"/>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>THE FUTURE</h1>
+
+        <h2>HotRuby</h2>
+        <h3>(a.k.a. "We don't need no stinkin' JavaScript!")</h3>
+
+        <ul>
+          <li>JavaScript virtual machine for Ruby</li>
+          <li>Runs opcode compiled by YARV (Yet Another Ruby VM)</li>
+          <li>Developed by Yu Kobayashi</li>
+          <li>Most grammars are implemented, but it currently lacks exception handling and the majority of Ruby's built-in functions and classes</li>
+        </ul>
+      </div>
+
+    </div>
+
+
+
+
+  </body>
+</html>
