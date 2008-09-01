@@ -4,8 +4,8 @@
     <title>A Survey of Behavior Driven Development in JavaScript</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="stylesheets/main.css" type="text/css" media="screen" charset="utf-8" />
-    <script type="text/javascript" src="javascripts/jquery.js"></script>
-    <script type="text/javascript" src="javascripts/jquery.slideshow.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.slideshow/vendor/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.slideshow/lib/jquery.slideshow.js"></script>
     <script type="text/javascript">
       $(function() {
           $('.slideshow').slideshow();
@@ -16,7 +16,7 @@
 
     <div class="slideshow">
 
-      <div class="slide">
+      <div class="first slide">
 
         <h1>A Survey of Behavior-Driven Development in JavaScript</h1>
 
@@ -25,7 +25,9 @@
         <br/><br/>
 
         <h2>T.J. VanSlyke</h2>
-        <h3>ELC Technologies</h3>
+        <div class="center">
+          <img src="images/elc.jpg"/>
+        </div>
         <h2>September 4, 2008</h2>
 
       </div>
@@ -184,7 +186,77 @@ jSpec.describe('this presentation', function($)
         </div>
       </div>
 
+      <div class="slide">
+        <h1>Other packages</h1>
 
+        <ul>
+          <li>JSSpec (http://code.google.com/p/jsspec/)</li>
+          <li>Screw.Unit (http://github.com/nkallen/screw-unit/tree/master)</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit</h1>
+
+        <h2>From the Screw.Unit README:</h2>
+
+        <p>Screw.Unit is a Behavior-Driven Testing Framework for Javascript. It features nested describes. Its goals are to provide:</p>
+
+        <ul>
+          <li>a DSL for elegant, readable, organized specs;</li>
+          <li>an interactive runner that can execute focused specs and describes;</li>
+          <li>and brief, extensible source-code.</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit</h1>
+
+        <div class="center">
+          <img src="images/awesome.jpg"/>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit</h1>
+
+        <pre>
+describe('this presentation', function() {
+  var presentation;
+  
+  before(function() {
+    presentation = { audience: null, boring: false };
+  });
+
+  it("should have an audience", function() {
+    expect(presentation.audience).to_not(be_null);
+  });
+
+  it("should not be boring", function() {
+    expect(presentation.boring).to_not(be_true);
+  });
+});
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit:  Time to get meta up in here.</h1>
+
+        <pre>
+describe("jquery.slideshow", function() {
+  it("should increment the current slide when the user presses the right-arrow key");
+  it("should decrement the current slide when the user presses the left-arrow key");
+});
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit:  Time to get meta up in here.</h1>
+
+        <pre>
+it("should increment the current slide when the user presses the right-arrow key", function() {
+});
+        </pre>
 
       <div class="slide">
 

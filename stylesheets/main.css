@@ -27,12 +27,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
-h1 {
-  font-size: 1.8em;
-  background-color: #400099;
-  border-bottom: 0.5em solid #2D006B;
-}
-
 ul li {
   font-size: 2.0em;
 }
@@ -49,6 +43,19 @@ ul li {
   border: 0.2em solid #1919B3;
   background-color: #12127D;
 }
+
+.first {
+  background-color: #fff;
+  color: #12127D;
+}
+
+h1 {
+  font-size: 1.8em;
+  background-color: #400099;
+  color: #fff;
+  border-bottom: 0.5em solid #2D006B;
+}
+
 
 pre {
   margin: 0;
