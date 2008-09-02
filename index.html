@@ -191,7 +191,35 @@ jSpec.describe('this presentation', function($)
 
         <ul>
           <li>JSSpec (http://code.google.com/p/jsspec/)</li>
+          <li>Firebug (JavaScript assertions, http://getfirebug.com)</li>
           <li>Screw.Unit (http://github.com/nkallen/screw-unit/tree/master)</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>JSSpec</h1>
+
+        <h2>From the JSSpec documentation:</h2>
+
+        <pre>
+describe('Plus operator', {
+  'should concatenate two strings': function() {
+    value_of("Hello " + "World").should_be("Hello World");
+  },
+  'should add two numbers': function() {
+    value_of(1 + 2).should_be(3);
+  }
+})
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>Firebug</h1>
+
+        <ul>
+          <li>Provides a console API for simple assertions</li>
+          <li>Does <em>not</em> provide a test harness for automation</li>
+          <li>One platform only (Firefox)</li>
         </ul>
       </div>
 
@@ -348,10 +376,16 @@ end
         </div>
       </div>
 
+      <div class="slide">
+        <h1>HotRuby: Problems to solve</h1>
+
+        <ul>
+          <li>How can we integrate JavaScript tests into our daily rake tasks?</li>
+          <li>How can we accommodate for multiple JavaScript implementations?</li>
+        </ul>
+      </div>
+
     </div>
-
-
-
 
   </body>
 </html>
