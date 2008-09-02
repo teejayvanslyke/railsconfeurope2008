@@ -296,6 +296,56 @@ describe('nextSlide()', function() {
           <li>Developed by Yu Kobayashi</li>
           <li>Most grammars are implemented, but it currently lacks exception handling and the majority of Ruby's built-in functions and classes</li>
         </ul>
+
+        <div class="notes">
+          
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>HotRuby</h1>
+
+        <pre class="left">
+describe "my sweet client-side 
+  Ruby slideshow app" do
+  before(:each) do
+    @slideshow = tag(:div).slideshow
+    @slides = 
+      [ 
+        tag(:div, class => 'slide'),
+        tag(:div, class => 'slide'),
+        tag(:div, class => 'slide')
+      ]
+    @slideshow.stub!(:slides).
+      and_return(@slides)
+  end
+        </pre>
+        <pre class="right">
+  describe "next_slide" do
+    it "hides the current slide" do
+      @slides[0].should_receive(:hide)
+      @slideshow.next_slide
+    end
+
+    it "increments the slide index" do
+      @slideshow.slide_index.should == 0
+      @slideshow.next_slide
+      @slideshow.slide_index.should == 1
+    end
+
+    it "shows the current slide" do
+      @slides[1].should_receive(:show)
+      @slideshow.next_slide
+    end
+  end
+end
+        </pre>
+
+        <div class="notes">
+          Here is what client-side RSpec <em>could</em> look like...
+          Note that there isn't much here you couldn't do with RJS; however, also note that 
+          this gives the flexibility to fully-spec running client-side code.
+        </div>
       </div>
 
     </div>
