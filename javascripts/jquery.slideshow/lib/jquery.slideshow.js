@@ -13,37 +13,44 @@ $.fn.slideshow = function(options) {
 
     if (opts.format == 'presentation') {
 
-      slideshow.addClass('presentation');
-
-      var slides            = [];
-
-      slideshow.children('.'+opts.slideClass).each(function() {
-
-        // Hide all but the first slide.
-        if (slides.length > 0) {
-          $(this).hide();
+      $.extend(slideshow, {
+        index:  0,
+        slides: [],
+        init: function() {
+          this.addClass('presentation');
+          var slideshow = this;
+          slideshow.children('.'+opts.slideClass).each(function() {
+            // Hide all but the first slide.
+            if (slideshow.slides.length > 0) {
+              $(this).hide();
+            }
+            // Push each slide onto the queue.
+            slideshow.slides.push($(this));
+          });
+        },
+        next: function() {
+          if (this.index < this.slides.length-1) {
+            this.slides[this.index].hide();
+            this.index++;
+            this.slides[this.index].show();
+          }
+        },
+        previous: function() {
+          if (this.index > 0) {
+            this.slides[this.index].hide();
+            this.index--;
+            this.slides[this.index].show();
+          }
         }
-
-        // Push each slide onto the queue.
-        slides.push($(this));
-
       });
 
-      var currentSlideIndex = 0;
+      slideshow.init();
       $(window).keydown(function(e) {
         if      (e.keyCode == KEY_LEFT) {
-          if (currentSlideIndex > 0) {
-            slides[currentSlideIndex].hide();
-            currentSlideIndex--;
-            slides[currentSlideIndex].show();
-          }
+          slideshow.previous();
         }
         else if (e.keyCode == KEY_RIGHT) {
-          if (currentSlideIndex < slides.length-1) {
-            slides[currentSlideIndex].hide();
-            currentSlideIndex++;
-            slides[currentSlideIndex].show();
-          }
+          slideshow.next();
         }
       });
 

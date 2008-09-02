@@ -9,7 +9,7 @@ Screw.Unit(function() {
 
     describe('incrementing the slide', function() {
 
-      it('increments the slide index', function() {
+      it('increments the slide index when the right-arrow key is pressed', function() {
       });
 
     });
