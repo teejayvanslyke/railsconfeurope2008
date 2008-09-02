@@ -7,47 +7,62 @@ $.fn.slideshow = function(options) {
 
   var opts = $.extend({}, $.fn.slideshow.defaults, options);
 
+  var slideshow         = $(this);
+
   return this.each(function() {
 
-    var slideshow         = $(this);
-    var slides            = [];
-    var currentSlideIndex = 0;
+    if (opts.format == 'presentation') {
 
-    slideshow.children('.'+opts.slideClass).each(function() {
+      slideshow.addClass('presentation');
 
-      // Hide all but the first slide.
-      if (slides.length > 0) {
-        $(this).hide();
-      }
+      var slides            = [];
 
-      // Push each slide onto the queue.
-      slides.push($(this));
+      slideshow.children('.'+opts.slideClass).each(function() {
 
-    });
-
-    $(window).keydown(function(e) {
-      if      (e.keyCode == KEY_LEFT) {
-        if (currentSlideIndex > 0) {
-          slides[currentSlideIndex].hide();
-          currentSlideIndex--;
-          slides[currentSlideIndex].show();
+        // Hide all but the first slide.
+        if (slides.length > 0) {
+          $(this).hide();
         }
-      }
-      else if (e.keyCode == KEY_RIGHT) {
-        if (currentSlideIndex < slides.length-1) {
-          slides[currentSlideIndex].hide();
-          currentSlideIndex++;
-          slides[currentSlideIndex].show();
+
+        // Push each slide onto the queue.
+        slides.push($(this));
+
+      });
+
+      var currentSlideIndex = 0;
+      $(window).keydown(function(e) {
+        if      (e.keyCode == KEY_LEFT) {
+          if (currentSlideIndex > 0) {
+            slides[currentSlideIndex].hide();
+            currentSlideIndex--;
+            slides[currentSlideIndex].show();
+          }
         }
-      }
-    });
+        else if (e.keyCode == KEY_RIGHT) {
+          if (currentSlideIndex < slides.length-1) {
+            slides[currentSlideIndex].hide();
+            currentSlideIndex++;
+            slides[currentSlideIndex].show();
+          }
+        }
+      });
+
+    }
+
+    else if (opts.format == 'outline') {
+
+      slideshow.addClass('outline');
+
+    }
 
   });
 
 };
 
 $.fn.slideshow.defaults = {
-  slideClass: 'slide'
+  slideClass: 'slide',
+  notesClass: 'notes',
+  format:     'presentation'
 };
 
 })(jQuery);

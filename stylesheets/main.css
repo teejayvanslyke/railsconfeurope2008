@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
-ul li {
+.presentation ul li {
   font-size: 2.0em;
 }
 
@@ -36,7 +36,7 @@ ul li {
 }
   
 
-.slide {
+.presentation .slide {
   width: 53.3em;
   height: 30em;
   color: #C8C8FF;
@@ -44,12 +44,12 @@ ul li {
   background-color: #12127D;
 }
 
-.first {
+.presentation .first {
   background-color: #fff;
   color: #12127D;
 }
 
-h1 {
+.presentation h1 {
   font-size: 1.8em;
   background-color: #400099;
   color: #fff;
@@ -57,7 +57,7 @@ h1 {
 }
 
 
-pre {
+.presentation pre {
   margin: 0;
   padding: 0;
   background-color: #00487D;
@@ -65,12 +65,38 @@ pre {
   color: #BFE4FF;
   font-family: "Monaco", "Courier New", fixed;
 }
-pre.left {
+.presentation pre.left {
   width: 25em;
   float: left;
 }
-pre.right {
+.presentation pre.right {
   width: 25em;
   float: right;
 }
+
+.slide .notes {
+  display: none;
+}
+
+.outline {
+  width: 600px;
+}
+
+.outline .slide {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  padding: 2em 0;
+}
+
+.outline h1,
+.outline h2,
+.outline h3,
+.outline h4,
+.outline h5 {
+  font-size: 1.0em;
+  text-align: left;
+}
+
+.outline .center {
+  text-align: left;
 }
