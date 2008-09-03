@@ -23,7 +23,10 @@ Screw.Unit(function() {
     describe('nextSlide()', function() {
 
       it('hides the current slide', function() {
-        //expect(slides[0]).to(receive, 'hide');
+        // expect(slides[0]).to(receive, 'hide'); // ideal...
+        expect(slides[0].css('display')).to(equal, 'block');
+        slideshow.nextSlide();
+        expect(slides[0].css('display')).to(equal, 'none');
       });
 
       it('increments the slide index', function() {
@@ -33,6 +36,8 @@ Screw.Unit(function() {
       });
 
       it('shows the current slide', function() {
+        slideshow.nextSlide();
+        expect(slides[1].css('display')).to(equal, 'block');
       });
 
     });

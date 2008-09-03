@@ -190,11 +190,51 @@ jSpec.describe('this presentation', function($)
         <h1>Other packages</h1>
 
         <ul>
+          <li>JsUnit (http://www.jsunit.net/)</li>
+          <li>QUnit</li>
           <li>JSSpec (http://code.google.com/p/jsspec/)</li>
           <li>Firebug (JavaScript assertions, http://getfirebug.com)</li>
           <li>Screw.Unit (http://github.com/nkallen/screw-unit/tree/master)</li>
         </ul>
       </div>
+
+      <div class="slide">
+        <h1>JsUnit</h1>
+
+        <h2>From the JsUnit documentation:</h2>
+
+        <pre>
+function testWithValidArgs() {
+  assertEquals("2 times 3 plus 5 is 11", 11, multiplyAndAddFive(2, 3));
+  assertEquals("Should work with negative numbers", -15, multiplyAndAddFive(-4, 5));
+}
+function testWithInvalidArgs() {
+  assertNull("A null argument should result in null", multiplyAndAddFive(2, null));
+  assertNull("A string argument should result in null", multiplyAndAddFive(2, "a string"));
+}
+        </pre>
+
+      </div>
+
+      <div class="slide">
+        <h1>QUnit</h1>
+
+        <h2>From the QUnit documentation:</h2>
+
+        <pre>
+module("Module A");
+
+test("first test within module", function() {
+  ok( true, "all pass" );
+});
+
+test("second test within module", function() {
+  ok( true, "all pass" );
+});
+        </pre>
+
+      </div>
+
 
       <div class="slide">
         <h1>JSSpec</h1>
@@ -294,16 +334,15 @@ describe('nextSlide()', function() {
       </div>
 
       <div class="slide">
-
-        <h1>Background</h1>
+        <h1>Technical hurdles to be solved</h1>
 
         <ul>
-          <li>JsUnit (http://www.jsunit.net/)</li>
-          <li>jqunit (http://code.google.com/p/jqunit/)</li>
-          <li>QUnit (http://docs.jquery.com/QUnit)</li>
+          <li>No automated cross-browser support</li>
+          <li>No integration into Rails development workflow (i.e., rake spec)</li>
+          <li>No mature mocking/stubbing library</li>
         </ul>
-
       </div>
+
 
       <div class="slide">
         <h1>THE FUTURE</h1>
@@ -333,11 +372,37 @@ describe('nextSlide()', function() {
       <div class="slide">
         <h1>HotRuby</h1>
 
+        <h2>Maybe someday instead of this:</h2>
+
+        <pre>
+(function($) {
+
+$.fn.slidesnow = function() {
+  // ...
+};
+
+)(jQuery);
+        </pre>
+
+
+        <h2>We'll do this:</h2>
+
+        <pre>
+dom_function :slideshow do |element|
+  # ...
+end
+        </pre>
+      </div>
+          
+
+      <div class="slide">
+        <h1>HotRuby</h1>
+
         <pre class="left">
 describe "my sweet client-side 
   Ruby slideshow app" do
   before(:each) do
-    @slideshow = tag(:div).slideshow
+    @slideshow = tag(:div).slideshow!
     @slides = 
       [ 
         tag(:div, class => 'slide'),
@@ -380,9 +445,17 @@ end
         <h1>HotRuby: Problems to solve</h1>
 
         <ul>
+          <li>We need a full Ruby implementation.</li>
+          <li>How do we access the DOM?  DOM Events?</li>
           <li>How can we integrate JavaScript tests into our daily rake tasks?</li>
           <li>How can we accommodate for multiple JavaScript implementations?</li>
         </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Your turn!</h1>
+
+        <h2>What are <em>you</em> using to test your JavaScript?</h2>
       </div>
 
     </div>
