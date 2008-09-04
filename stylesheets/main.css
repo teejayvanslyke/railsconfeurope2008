@@ -28,6 +28,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+.presentation ul {
+  margin-left: 2.0em;
+}
 .presentation ul li {
   font-size: 2.0em;
 }
@@ -50,10 +53,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .presentation h1 {
-  font-size: 1.8em;
+  font-size: 2.2em;
   background-color: #400099;
   color: #fff;
   border-bottom: 0.5em solid #2D006B;
+  margin-bottom: 1.0em;
 }
 
 .presentation p {
@@ -63,18 +67,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .presentation pre {
   margin: 0;
-  padding: 0;
+  padding: 1em;
   background-color: #00487D;
   border: 0.4em solid #0066B3;
   color: #BFE4FF;
+  font-size: 1.1em;
   font-family: "Monaco", "Courier New", fixed;
 }
 .presentation pre.left {
-  width: 25em;
+  width: 45%;
   float: left;
 }
 .presentation pre.right {
-  width: 25em;
+  width: 45%;
   float: right;
 }
 
