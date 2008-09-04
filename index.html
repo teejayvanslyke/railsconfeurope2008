@@ -44,6 +44,7 @@
           <li>Technical hurdles to a friendly solution.</li>
           <li>Existing solutions</li>
           <li>The future</li>
+          <li>Community forum</li>
         </ul>
 
       </div>
@@ -75,15 +76,18 @@
       <div class="slide">
         <h1>jSpec</h1>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
         <div class="center">
           <img src="images/jspec.png"/>
         </div>
 
+        <h2>Features!</h2>
+
+        <ul>
+          <li>Message expectations with quantifiers like RSpec</li>
+          <li>RSpec-like 'should(Not)' predicate syntax</li>
+          <li>Nested describe blocks (a la RSpec)</li>
+          <li>No originality whatsoever</li>
+        </ul>
       </div> 
 
       <div class="slide">
@@ -179,7 +183,30 @@ jSpec.describe('this presentation', function($)
       </div>
 
       <div class="slide">
-        <h1>jSpec</h1>
+        <h1>jSpec:  Message Expectations</h1>
+
+        <h2>Example</h2>
+        
+        <pre>
+jSpec.describe('this presentation', function($)
+{
+  var presentation;
+  $.beforeEach(function() {
+    presentation = { 
+      begin   : function() { alert(this.applause); },
+      applause: 'woooo!'
+    };
+  });
+  $.it("should receive applause", function() {
+    $.$(presentation).shouldReceive('applause');
+    presentation.begin();
+  });
+});
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>RTFG!</h1>
 
         <div class="center">
           <img src="images/ninja-kitten-defeats-dog-with-google-search-skills-always.jpg"/>
@@ -190,11 +217,21 @@ jSpec.describe('this presentation', function($)
         <h1>Other packages</h1>
 
         <ul>
-          <li>JsUnit (http://www.jsunit.net/)</li>
-          <li>QUnit</li>
-          <li>JSSpec (http://code.google.com/p/jsspec/)</li>
           <li>Firebug (JavaScript assertions, http://getfirebug.com)</li>
+          <li>JsUnit (http://www.jsunit.net/)</li>
+          <li>QUnit (http://docs.jquery.com/QUnit)</li>
+          <li>JSSpec (http://code.google.com/p/jsspec/)</li>
           <li>Screw.Unit (http://github.com/nkallen/screw-unit/tree/master)</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Firebug</h1>
+
+        <ul>
+          <li>Provides a console API for simple assertions</li>
+          <li>Does <em>not</em> provide a test harness for automation</li>
+          <li>One platform only (Firefox)</li>
         </ul>
       </div>
 
@@ -254,16 +291,6 @@ describe('Plus operator', {
       </div>
 
       <div class="slide">
-        <h1>Firebug</h1>
-
-        <ul>
-          <li>Provides a console API for simple assertions</li>
-          <li>Does <em>not</em> provide a test harness for automation</li>
-          <li>One platform only (Firefox)</li>
-        </ul>
-      </div>
-
-      <div class="slide">
         <h1>Screw.Unit</h1>
 
         <h2>From the Screw.Unit README:</h2>
@@ -281,7 +308,16 @@ describe('Plus operator', {
         <h1>Screw.Unit</h1>
 
         <div class="center">
-          <img src="images/awesome.jpg"/>
+          <img src="images/turtle.jpg"/>
+          <h2>RADICAL!</h2>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit</h1>
+
+        <div align="center">
+          <img src="images/screw-unit-runner.png"/>
         </div>
       </div>
 
@@ -325,12 +361,172 @@ describe("jquery.slideshow", function() {
 
         <pre>
 describe('nextSlide()', function() {
-  it('hides the current slide', function() {});
   it('increments the slide index', function() {});
-  it('shows the current slide', function() {});
+  it('hides the previous slide', function() {});
+  it('shows the next slide', function() {});
 });
         </pre>
 
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit:  Time to get meta up in here.</h1>
+
+        <pre>
+...
+it('increments the slide index', function() {
+  expect(slideshow.slideIndex()).to(equal, 0);
+  slideshow.nextSlide();
+  expect(slideshow.slideIndex()).to(equal, 1);
+});
+...
+        </pre>
+
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit:  Time to get meta up in here.</h1>
+
+        <pre>
+it('hides the current slide', function() {
+});
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit.shouldReceive('messageExpectations')</h1>
+
+        <h2>In an ideal world:</h2>
+
+        <pre>
+it('hides the current slide', function() {
+  expect(slides[0]).to(receive, 'hide'); // ideal...
+  slideshow.nextSlide();
+});
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>Screw.Unit.shouldReceive('messageExpectations')</h1>
+
+        <h2>In the real world:</h2>
+
+        <pre>
+...
+it('increments the slide index', function() {
+  expect(slideshow.slideIndex()).to(equal, 0);
+  slideshow.nextSlide();
+  expect(slideshow.slideIndex()).to(equal, 1);
+});
+...
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>Let's look under the hood...</h1>
+
+        <pre>
+be_true: {
+  match: function(expected, actual) {
+    return actual;
+  },
+
+  failure_message: function(expected, actual, not) {
+    return 'expected ' + $.print(actual) + (not ? ' to not be true' : ' to be true');
+  }
+},
+...
+        </pre>
+
+        <div class="notes">
+          In order to create a 'receive' matcher, the architecture would need to be changed
+          to accommodate for post-test callbacks such that we could reconcile the expectations
+          at the end of the test execution.
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Stubs and Mocks?</h1>
+
+        <ul>
+          <li>JSMock</li>
+          <li>Roll your own</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>JSMock</h1>
+
+        <pre>
+function Presentation() {
+  this.boring   = function() { /* ... */ };
+  this.audience = function() { /* ... */ };
+}
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>JSMock</h1>
+
+        <pre>
+function test_PresentationIsTotallyStellar() {
+  var mockControl = new MockControl();
+  presentationMock = mockControl.createMock(Presentation);
+
+  var soManyPeople = [ 'all', 'of', 'you', 'wonderful', 'beautiful', 'rails', 'enthusiasts' ];
+
+  presentationMock.expects().boring().andReturn(false);
+  presentationMock.expects().audience().andReturn(soManyPeople);
+}
+        </pre>
+      </div>
+
+      <div class="slide">
+        <h1>JSMock:  Yay/Nay</h1>
+
+        <h2>Yay!</h2>
+
+        <ul>
+          <li>Expectation recording/matching!</li>
+        </ul>
+
+        <h2>Nay!</h2>
+
+        <ul>
+          <li>Mildly cumbersome syntax</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Mock schnell!</h1>
+
+        <h2>Or:  One Reason To Love Prototype-Based Languages</h2>
+
+        <pre>
+// A la RSpec mock()
+var mock_schnell = {
+  field: 'value',
+  another: 123,
+  method: function() { return 'some mocked value'; }
+};
+        </pre>
+
+      </div>
+
+      <div class="slide">
+        <h1>Roll your own:  Yay/Nay</h1>
+
+        <h2>Yay!</h2>
+
+        <ul>
+          <li>No external libraries and no setup beyond a plain ol' JavaScript object.</li>
+        </ul>
+
+        <h2>Nay!</h2>
+
+        <ul>
+          <li>No expectation recording/matching</li>
+        </ul>
       </div>
 
       <div class="slide">
@@ -339,6 +535,7 @@ describe('nextSlide()', function() {
         <ul>
           <li>No automated cross-browser support</li>
           <li>No integration into Rails development workflow (i.e., rake spec)</li>
+          <li>No mature message expectation engine</li>
           <li>No mature mocking/stubbing library</li>
         </ul>
       </div>
@@ -393,7 +590,6 @@ dom_function :slideshow do |element|
 end
         </pre>
       </div>
-          
 
       <div class="slide">
         <h1>HotRuby</h1>
@@ -455,7 +651,21 @@ end
       <div class="slide">
         <h1>Your turn!</h1>
 
+        <div class="center">
+          <img src="images/elmo.jpg"/>
+        </div>
+
         <h2>What are <em>you</em> using to test your JavaScript?</h2>
+      </div>
+
+      <div class="slide">
+        <h1>FIN.</h1>
+
+        <div class="center">
+          <img src="images/mrrogers.jpg"/>
+        </div>
+
+        <h2>github.com/teejayvanslyke/railsconfeurope2008</h2>
       </div>
 
     </div>

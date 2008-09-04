@@ -10,6 +10,12 @@ $.fn.slideshow = function(options) {
     _slideIndex:  0,
     slideIndex: function() { return this._slideIndex; },
     slides: [],
+    resize: function() {
+      $(this).children('.'+opts.slideClass).each(function() {
+        $(this).width($(window).width()); 
+        $(this).height($(window).height()); 
+      });
+    },
     init: function() {
       this.addClass('presentation');
       var slideshow = this;
@@ -21,6 +27,8 @@ $.fn.slideshow = function(options) {
         // Push each slide onto the queue.
         slideshow.slides.push($(this));
       });
+      // Resize to the window's dimensions.
+      slideshow.resize();
     },
 
     current: function() { return this.slides[this.slideIndex()]; },
@@ -56,6 +64,9 @@ $.fn.slideshow = function(options) {
       else if (e.keyCode == KEY_RIGHT) {
         slideshow.nextSlide();
       }
+    });
+    $(window).resize(function(e) {
+      slideshow.resize();
     });
   }
   else if (opts.format == 'outline') {

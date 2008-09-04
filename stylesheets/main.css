@@ -19,6 +19,7 @@
 body {
   font-family: Georgia, Sans-serif;
   font-size: 20px;
+  margin: 0; padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,7 +41,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 53.3em;
   height: 30em;
   color: #C8C8FF;
-  border: 0.2em solid #1919B3;
   background-color: #12127D;
 }
 
@@ -54,6 +54,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #400099;
   color: #fff;
   border-bottom: 0.5em solid #2D006B;
+}
+
+.presentation p {
+  font-size: 1.5em;
 }
 
 
