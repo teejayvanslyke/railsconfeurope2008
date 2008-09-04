@@ -8,7 +8,7 @@
     <script type="text/javascript" src="javascripts/jquery.slideshow/lib/jquery.slideshow.js"></script>
     <script type="text/javascript">
       $(function() {
-          $('.slideshow').slideshow({format: 'outline'});
+          $('.slideshow').slideshow({format: 'presentation'});
       });
     </script>
   </head>
@@ -244,12 +244,16 @@ jSpec.describe('this presentation', function($)
 
         <pre>
 function testWithValidArgs() {
-  assertEquals("2 times 3 plus 5 is 11", 11, multiplyAndAddFive(2, 3));
-  assertEquals("Should work with negative numbers", -15, multiplyAndAddFive(-4, 5));
+  assertEquals("2 times 3 plus 5 is 11", 11, 
+    multiplyAndAddFive(2, 3));
+  assertEquals("Should work with negative numbers", -15, 
+    multiplyAndAddFive(-4, 5));
 }
 function testWithInvalidArgs() {
-  assertNull("A null argument should result in null", multiplyAndAddFive(2, null));
-  assertNull("A string argument should result in null", multiplyAndAddFive(2, "a string"));
+  assertNull("A null argument should result in null", 
+    multiplyAndAddFive(2, null));
+  assertNull("A string argument should result in null", 
+    multiplyAndAddFive(2, "a string"));
 }
         </pre>
 
@@ -475,7 +479,7 @@ function test_PresentationIsTotallyStellar() {
   var mockControl = new MockControl();
   presentationMock = mockControl.createMock(Presentation);
 
-  var soManyPeople = [ 'all', 'of', 'you', 'wonderful', 'beautiful', 'rails', 'enthusiasts' ];
+  var soManyPeople = [ 'all', 'of', 'you', 'beautiful', 'rails', 'enthusiasts' ];
 
   presentationMock.expects().boring().andReturn(false);
   presentationMock.expects().audience().andReturn(soManyPeople);
